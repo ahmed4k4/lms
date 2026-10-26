@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Archai Design System v2.0 tokens. Dark is the base; light is for documents/prints (.theme-light). */
+@layer base {
+  :root {
+    --bg: 27 34 40;        /* Carbon  #1B2228  surface 60% */
+    --deep: 18 24 29;      /* Slate-950 #12181D wells / fields */
+    --panel: 34 43 51;     /* Panel   #222B33  cards 20% */
+    --steel: 45 56 65;     /* Steel   #2D3841 */
+    --line: 58 71 83;      /* Slate-700 #3A4753 */
+    --text: 241 244 247;   /* Paper   #F1F4F7 */
+    --muted: 152 165 177;  /* Mist    #98A5B1 */
+    --silver: 204 211 218; /* Silver  #CCD3DA metal / text 12% */
+    --arc: 46 210 255;     /* Arc Blue #2ED2FF signal 6% */
+    --arc-ink: 7 115 155;  /* Arc Ink #07739B (text on light) */
+    --on-arc: 27 34 40;    /* Carbon text on Arc = 10:1 AAA */
+    --copper: 196 138 92;  /* Copper  #C48A5C accent 2% */
+    --ok: 61 220 151;
+    --warn: 233 162 79;
+    --err: 255 107 122;
+    --glow: 0 0 26px rgb(46 210 255 / 0.28);
+    --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --font-sans: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, system-ui, sans-serif;
+    --font-display: "Sora Variable", "Readex Pro Variable", "IBM Plex Sans Arabic", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+    color-scheme: dark;
+  }
+  .theme-light {
+    --bg: 241 244 247; --deep: 255 255 255; --panel: 255 255 255; --steel: 230 234 238; --line: 204 211 218;
+    --text: 18 24 29; --muted: 74 89 102; --silver: 74 89 102;
+    --arc: 7 115 155; --on-arc: 255 255 255; --copper: 138 90 54;
+    --ok: 22 130 84; --warn: 160 95 20; --err: 190 40 60;
+    --glow: none;
+    color-scheme: light;
+  }
+
+  * { border-color: rgb(var(--line)); }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { @apply bg-background font-sans text-foreground antialiased; font-size: 16px; line-height: 1.7; }
+  :lang(ar) body { line-height: 1.85; }
+  h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.25; text-wrap: balance; }
+  :lang(ar) h1, :lang(ar) h2, :lang(ar) h3, :lang(ar) h4 { line-height: 1.5; }
+  h1 { font-weight: 700; } h2 { font-weight: 700; } h3, h4 { font-weight: 600; }
+  ::selection { background: rgb(var(--arc) / 0.35); }
+  a { transition: color 120ms var(--ease); }
+  :focus-visible { outline: 2px solid rgb(var(--arc)); outline-offset: 2px; border-radius: 6px; }
+  input:focus-visible, textarea:focus-visible, select:focus-visible { outline: none; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: rgb(var(--steel)); border-radius: 8px; border: 2px solid rgb(var(--bg)); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+}
+
+@layer components {
+  /* Mono spec label — Latin text only (never letter-space Arabic). */
+  .label-mono { font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(var(--arc)); }
+  .num { font-family: var(--font-mono); font-feature-settings: "zero"; }
+  .glow { box-shadow: var(--glow); }
+  /* Chrome bevel: the only gradient allowed besides glow. */
+  .chrome-edge {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(var(--panel)), rgb(var(--panel))) padding-box,
+                linear-gradient(135deg, #E6EAEE, #98A5B1 45%, #4A5966) border-box;
+  }
+  .glass { background: rgb(255 255 255 / 0.06); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgb(255 255 255 / 0.14); }
+  /* 45° notched corner (service-card motif), mirrored for RTL. */
+  .notch { clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%); }
+  [dir="rtl"] .notch { clip-path: polygon(22px 0, 100% 0, 100% 100%, 0 100%, 0 22px); }
+  .port { position: relative; display: inline-block; width: 10px; height: 10px; border-radius: 9999px; background: rgb(var(--arc)); box-shadow: 0 0 0 4px rgb(var(--arc) / 0.18), var(--glow); }
+  .hover-lift { transition: transform 240ms var(--ease), border-color 240ms var(--ease); }
+  .hover-lift:hover { transform: translateY(-2px); border-color: rgb(var(--arc) / 0.55); }
+  .field-focus:focus { border-color: rgb(var(--arc)); box-shadow: 0 0 0 3px rgb(var(--arc) / 0.2), var(--glow); }
+  @media print {
+    body { background: #fff !important; }
+    .no-print { display: none !important; }
+  }
+}

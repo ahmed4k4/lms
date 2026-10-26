@@ -1,0 +1,62 @@
+{
+  "name": "lms-marketplace",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Secure multi-instructor LMS marketplace (Next.js, Supabase, Cloudflare R2)",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "check": "npm run typecheck && npm run lint && npm run test",
+    "bootstrap:admin": "tsx scripts/bootstrap-super-admin.ts",
+    "watermark:resolve": "tsx scripts/resolve-watermark.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.1154.0",
+    "@aws-sdk/s3-request-presigner": "3.1154.0",
+    "@fontsource-variable/jetbrains-mono": "5.3.0",
+    "@fontsource-variable/readex-pro": "5.3.0",
+    "@fontsource-variable/sora": "5.3.0",
+    "@fontsource/ibm-plex-sans-arabic": "5.3.0",
+    "@radix-ui/react-slot": "1.5.0",
+    "@supabase/ssr": "0.7.0",
+    "@supabase/supabase-js": "2.57.4",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "lucide-react": "1.59.0",
+    "next": "15.5.28",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "server-only": "0.0.1",
+    "tailwind-merge": "3.7.0",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.3.10",
+    "@eslint/eslintrc": "3.3.7",
+    "@playwright/test": "1.64.1",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.8",
+    "@types/node": "22.18.1",
+    "@types/react": "19.1.12",
+    "@types/react-dom": "19.1.9",
+    "autoprefixer": "10.6.1",
+    "dotenv": "18.0.8",
+    "eslint": "9.35.0",
+    "eslint-config-next": "15.5.2",
+    "jsdom": "30.1.3",
+    "postcss": "8.5.31",
+    "tailwindcss": "3.4.17",
+    "tsx": "4.23.15",
+    "typescript": "5.9.2",
+    "vitest": "3.2.4"
+  }
+}
